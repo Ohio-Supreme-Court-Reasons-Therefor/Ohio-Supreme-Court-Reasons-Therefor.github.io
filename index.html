@@ -88,11 +88,11 @@
             }
             /* visited link */
             main a:visited {
-                color: #6D3746;
+                color: #6d3746;
             }
             /* mouse over link */
             main a:hover {
-                color: #1B0ED1;
+                color: #1b0ed1;
             }
             /* selected link */
             main a:active {
@@ -132,19 +132,21 @@
                 // workaround for scrollspy not working.
                 const navLinks = document.querySelectorAll('.nav-link[href^="#"');
                 var activeNavLinkNum = 0;
-                for( var n = 0; n < navLinks.length; n++ ){
-                    if (document.querySelector(navLinks[n].hash ).getBoundingClientRect().top <= navBar.clientHeight + marginTopForNavItemAnchors) {
+                for (var n = 0; n < navLinks.length; n++) {
+                    if (
+                        document.querySelector(navLinks[n].hash).getBoundingClientRect().top <=
+                        navBar.clientHeight + marginTopForNavItemAnchors
+                    ) {
                         continue;
                     }
                     activeNavLinkNum = n - 1;
                     break;
                 }
-                for( var n = 0; n < navLinks.length; n++ ){
-                    if( n == activeNavLinkNum ) {
-                        navLinks[n].classList.add('active');
-                    }
-                    else {
-                        navLinks[n].classList.remove('active');
+                for (var n = 0; n < navLinks.length; n++) {
+                    if (n == activeNavLinkNum) {
+                        navLinks[n].classList.add("active");
+                    } else {
+                        navLinks[n].classList.remove("active");
                     }
                 }
             }
@@ -171,10 +173,10 @@
     <body onload="onBodyLoad()" onresize="onBodyResize()">
         <!-- background color fcf5eb is a tint of the antique white used in the boxes; see https://www.color-hex.com/color/faebd7 -->
 
-        <div id="top" style="height: 60px"></div>
+        <div id="top" style="height: 60px" class="d-print-none"></div>
 
         <!-- Note: Bootstrap scrollspy is not working. https://github.com/twbs/bootstrap/issues/32496 -->
-        <nav id="mainnavbar" class="navbar fixed-top navbar-dark">
+        <nav id="mainnavbar" class="navbar fixed-top navbar-dark d-print-none">
             <div class="container">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
@@ -245,10 +247,7 @@
                 <div class="col-1"></div>
             </div>
 
-            <p>
-                As can be seen in the news and references sections below, this seemingly straightforward mandate has been a surprising
-                source of contention.
-            </p>
+            <p>As can be seen in the sections below, this seemingly straightforward mandate has been a surprising source of contention.</p>
 
             <div class="row">
                 <div class="col-7">
