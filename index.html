@@ -26,9 +26,11 @@
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-49QXPQX235"></script>
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-49QXPQX235');
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag("js", new Date());
+            gtag("config", "G-49QXPQX235");
         </script>
 
         <!-- favicon -->
@@ -54,7 +56,6 @@
             body,
             .navbar {
                 background-color: black;
-                /*font-family: Lato, Helvetica, sans-serif;*/
                 font-size: 1.125rem;
                 line-height: 1.8rem;
                 font-weight: 200;
@@ -79,6 +80,14 @@
                 margin-top: 1rem;
                 margin-bottom: 1rem;
             }
+            blockquote {
+                display: block;
+                line-height: 1.5rem;
+                margin-block-start: 1em;
+                margin-block-end: 1em;
+                margin-inline-start: 40px;
+                margin-inline-end: 40px;
+            }
         </style>
 
         <!-- JavaScript to do dynamic, custom CSS -->
@@ -92,7 +101,7 @@
                 });
             }
             function setBodyPaddingTop(navBar) {
-                document.body.setAttribute("data-bs-offset", navBar.clientHeight);
+                document.body.dataset.bsOffset = parseInt(navBar.clientHeight || 0) + 25;
                 document.body.style.paddingTop = navBar.clientHeight + "px";
             }
             function setAnchorsScrollMarginTop(navBar) {
@@ -115,7 +124,13 @@
 
         <title>Ohio Supreme Court "Reasons Therefor" Research</title>
     </head>
-    <body data-bs-spy="scroll" data-bs-target="#mainnavbar" style="position: relative" onload="onBodyLoad()" onresize="onBodyResize()">
+    <body
+        data-bs-spy="scroll"
+        data-bs-target="#mainnavbar"
+        style="position: relative; padding-top: 60px"
+        onload="onBodyLoad()"
+        onresize="onBodyResize()"
+    >
         <!-- background color fcf5eb is a tint of the antique white used in the boxes; see https://www.color-hex.com/color/faebd7 -->
 
         <nav id="mainnavbar" class="navbar fixed-top navbar-dark">
@@ -137,7 +152,7 @@
                         <a class="nav-link" href="#recentreferencesonthecourtswebsite">Recent References</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#acknowledgements">Acknowledgements</a>
+                        <a class="nav-link" href="#acknowledgments">Acknowledgments</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#disclaimer">Disclaimer</a>
@@ -168,7 +183,16 @@
                         "
                     >
                         <div class="card-body">
-                            <blockquote class="blockquote text-center" style="font-size: 2rem; margin-bottom: 0px">
+                            <blockquote
+                                class="text-center"
+                                style="
+                                    font-size: 2rem;
+                                    margin-bottom: 0px;
+                                    line-height: 2.3rem;
+                                    margin-block-start: 0px;
+                                    margin-block-end: 0px;
+                                "
+                            >
                                 The decisions in all cases in the Supreme Court shall&nbsp;be&nbsp;reported,<br />
                                 <span style="font-family: 'Tangerine', cursive; font-weight: 700"
                                     >together&nbsp;with&nbsp;the&nbsp;reasons&nbsp;therefor</span
@@ -198,11 +222,12 @@
                         <a href="https://www.supremecourt.ohio.gov/SCO/formerjustices/bios/wanamaker.asp">Justice Wanamaker</a> stressed its
                         wisdom while dissenting in
                         <i
-                            ><a
+                            >State, ex. rel Durbin, v. Smith, Secretary of State,
+                            <a
                                 href="https://cite.case.law/ohio-st/102/591/?highlight=The+Constitution+of+Ohio%2C+as+amended+in+1912%2C+wisely+provided+that+%E2%80%9CThe+decisions+in+all+cases+in+the+supreme+court+shall+be+reported%2C+together+with+the+reasons+therefor.%E2%80%9D+Prior+to+that+time+the+majority+of+the+cases%2C+often+the+big+and+most+embarrassing+ones%2C+were+decided+without+any+opinion%2C+or+without+any+%E2%80%9Creasons+therefor.%E2%80%9D+The+people+of+Ohio+realized+that+the+best+test+of+reasonable+judgments+was+sound+%E2%80%9Creasons+therefor.%E2%80%9D#b697-5"
-                                >State, ex. rel Durbin, v. Smith, Secretary of State</a
+                                >102 Ohio St. 591</a
                             ></i
-                        >, 102 Ohio St. 591, 651:
+                        >, 651:
                     </p>
                     <blockquote>
                         The Constitution of Ohio, as amended in 1912, wisely provided that "The decisions in all cases in the supreme court
@@ -216,6 +241,21 @@
                             >Ohio Judicial System Reorganization Amendment</a
                         >, which is more commonly known as the
                         <a href="https://www.google.com/search?q=ohio+modern+courts+amendment+1968">Modern Courts Amendment</a>.
+                    </p>
+                    <p>
+                        Despite the mandate, Ohio's Supreme Court has frequently reported decisions without reporting "reasons therefor".
+                        For example, when a candidate in the March 2020 primary election
+                        <a href="https://www.google.com/search?q=Speweik+march+2020+primary+election">sued</a> for an order that would
+                        mandate the Ohio Secretary of State action's in relation to COVID-19, the Court's reported decision text was merely
+                        this: "In Mandamus. Writ denied." <i>State ex rel. Speweik v. Wood Cty. Bd. of Elections</i>, No.
+                        <a href="https://supremecourt.ohio.gov/Clerk/ecms/#/caseinfo/2020/0382">2020-0382</a>,
+                        <a href="https://supremecourt.ohio.gov/rod/docs/pdf/0/2020/2020-ohio-997.pdf">2020-Ohio-997</a>. When a member of
+                        Ohio's House of Representatives then
+                        <a href="https://www.google.com/search?q=brinkman+justices+%22reasons+therefor%22">asked</a> the Court to mandate
+                        that the reasons be provided, the Court denied the request and, again, reported its decision without any "reasons
+                        therefor". <i>State ex rel. Brinkman v. O’Connor, et al.</i>, No.
+                        <a href="https://supremecourt.ohio.gov/Clerk/ecms/#/caseinfo/2020/0389">2020-0389</a>,
+                        <a href="https://supremecourt.ohio.gov/rod/docs/pdf/0/2020/2020-ohio-4053.pdf">2020-Ohio-4053</a>.
                     </p>
                 </div>
                 <div class="col-5">
@@ -332,7 +372,7 @@
                         })
                             .then((response) => response.text())
                             .then((str) => {
-                                console.log({ "Google Apps Script (proxy for Google News RSS feed) response:": str });
+                                console.log("Google Apps Script (proxy for Google News RSS feed) response:", { str });
                                 return new window.DOMParser().parseFromString(str, "text/xml");
                             })
                             .then((data) => {
@@ -363,9 +403,10 @@
                             </p>
                             <p>
                                 The spelling of "therefor" without a final "e" is not a mistake. As has been
-                                <a href="https://www.lawprose.org/lawprose-lesson-128-therefore-vs-therefor/">explained</a> by the legal writing
-                                scholar Bryan Garner, "therefore" means "for that reason", "consequently", or "so", while "therefor" means "for
-                                that" or "for it". "Therefore" is usually found at the beginning of clauses and "therefor" at the end.
+                                <a href="https://www.lawprose.org/lawprose-lesson-128-therefore-vs-therefor/">explained</a> by the legal
+                                writing scholar Bryan Garner, "therefore" means "for that reason", "consequently", or "so", while "therefor"
+                                means "for that" or "for it". "Therefore" is usually found at the beginning of clauses and "therefor" at the
+                                end.
                             </p>
                         </div>
                     </div>
@@ -377,8 +418,8 @@
                 <em
                     ><span style="color: #e24c00"
                         ><strong>Warning: Ads!</strong> The reference results below are via an ad-supported Google
-                        <a href="https://cse.google.com" style="color:inherit">Programmable Search Engine</a>. This website has no control over what ads may be
-                        displayed within the following results.</span
+                        <a href="https://cse.google.com" style="color: inherit">Programmable Search Engine</a>. This website has no control
+                        over what ads may be displayed within the following results.</span
                     ></em
                 >
             </p>
@@ -411,10 +452,10 @@
             <h2 id="disclaimer">Disclaimer</h2>
             <p>
                 <em>
-                    This website and the referenced research initiatives are private and not affiliated with&nbsp;the&nbsp;<a
+                    This website and the referenced research initiatives are private and not affiliated with&nbsp;<a
                         href="https://supremecourt.ohio.gov"
-                        >Supreme&nbsp;Court</a
-                    >&nbsp;of&nbsp;Ohio.</em
+                        >The&nbsp;Supreme&nbsp;Court&nbsp;of&nbsp;Ohio.</a
+                    ></em
                 >
             </p>
         </main>
