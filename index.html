@@ -47,8 +47,9 @@
         <!-- Additional, custom CSS -->
 
         <style id="css-for-anchor-scroll-margin-top">
+            /* Do not manually modify this style tag or its contents. It is set dynamically in the JavaScript below */
             h2 {
-                scroll-margin-top: undefined; /* this is set dynamically in the JavaScript below */
+                scroll-margin-top: undefined;
             }
         </style>
 
@@ -71,7 +72,7 @@
             }
             main {
                 background-color: #fcf5eb;
-                padding-bottom: 3rem;
+                padding-bottom: 10rem;
             }
             h1 {
                 margin-bottom: 1rem;
@@ -80,6 +81,24 @@
                 margin-top: 1rem;
                 margin-bottom: 1rem;
             }
+
+            /* unvisited link */
+            main a:link {
+                color: #522974;
+            }
+            /* visited link */
+            main a:visited {
+                color: #6D3746;
+            }
+            /* mouse over link */
+            main a:hover {
+                color: #1B0ED1;
+            }
+            /* selected link */
+            main a:active {
+                color: blue;
+            }
+
             blockquote {
                 display: block;
                 line-height: 1.5rem;
@@ -92,6 +111,7 @@
 
         <!-- JavaScript to do dynamic, custom CSS -->
         <script>
+            const marginTopForNavItemAnchors = 50;
             function onBodyLoad() {
                 var navBar = document.querySelector("nav.navbar");
                 setBodyPaddingTop(navBar);
@@ -99,19 +119,43 @@
                 navBar.addEventListener("mouseenter", (evt) => {
                     setAnchorsScrollMarginTop(evt.target);
                 });
+                setActiveNavItem(navBar);
             }
             function setBodyPaddingTop(navBar) {
-                document.body.dataset.bsOffset = parseInt(navBar.clientHeight || 0) + 25;
-                document.body.style.paddingTop = navBar.clientHeight + "px";
+                document.querySelector("#top").style.height = navBar.clientHeight + "px";
             }
             function setAnchorsScrollMarginTop(navBar) {
                 document.querySelector("#css-for-anchor-scroll-margin-top").sheet.cssRules[0].style.scrollMarginTop =
-                    navBar.clientHeight + 30 + "px";
+                    navBar.clientHeight + marginTopForNavItemAnchors + "px";
             }
+            function setActiveNavItem(navBar) {
+                // workaround for scrollspy not working.
+                const navLinks = document.querySelectorAll('.nav-link[href^="#"');
+                var activeNavLinkNum = 0;
+                for( var n = 0; n < navLinks.length; n++ ){
+                    if (document.querySelector(navLinks[n].hash ).getBoundingClientRect().top <= navBar.clientHeight + marginTopForNavItemAnchors) {
+                        continue;
+                    }
+                    activeNavLinkNum = n - 1;
+                    break;
+                }
+                for( var n = 0; n < navLinks.length; n++ ){
+                    if( n == activeNavLinkNum ) {
+                        navLinks[n].classList.add('active');
+                    }
+                    else {
+                        navLinks[n].classList.remove('active');
+                    }
+                }
+            }
+            document.addEventListener("scroll", function () {
+                setActiveNavItem(document.querySelector("nav.navbar"));
+            });
             function onBodyResize() {
                 var navBar = document.querySelector("nav.navbar");
                 setBodyPaddingTop(navBar);
                 setAnchorsScrollMarginTop(navBar);
+                setActiveNavItem(navBar);
             }
         </script>
 
@@ -124,20 +168,17 @@
 
         <title>Ohio Supreme Court "Reasons Therefor" Research</title>
     </head>
-    <body
-        data-bs-spy="scroll"
-        data-bs-target="#mainnavbar"
-        style="position: relative; padding-top: 60px"
-        onload="onBodyLoad()"
-        onresize="onBodyResize()"
-    >
+    <body onload="onBodyLoad()" onresize="onBodyResize()">
         <!-- background color fcf5eb is a tint of the antique white used in the boxes; see https://www.color-hex.com/color/faebd7 -->
 
+        <div id="top" style="height: 60px"></div>
+
+        <!-- Note: Bootstrap scrollspy is not working. https://github.com/twbs/bootstrap/issues/32496 -->
         <nav id="mainnavbar" class="navbar fixed-top navbar-dark">
             <div class="container">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link" href="#top">⌂</a>
+                        <a class="nav-link active" href="#top">⌂</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#summaryhistory">Summary History</a>
@@ -162,7 +203,7 @@
         </nav>
 
         <main class="container">
-            <h1 id="top" style="padding-top: 15px">Ohio Supreme Court "Reasons Therefor" Research</h1>
+            <h1 style="padding-top: 15px">Ohio Supreme Court "Reasons Therefor" Research</h1>
 
             <p>
                 Ohio's Constitution mandates its Supreme Court report the reasons for its decisions. This page regards research on the
@@ -438,16 +479,22 @@
                 limited to:
             </p>
 
-            <ul>
-                <li>James Freed, Ph.D., Professor, Ohio Wesleyan University Department of Zoology</li>
-                <li>Judith Freed, M.Ed., Delaware City Schools</li>
-            </ul>
-            <ul>
-                <li>David Hejmanowski, J.D., Judge, Delaware County Court of Common Pleas Probate/Juvenile Division</li>
-            </ul>
-            <ul>
-                <li>Glenn McNair, Ph.D., Professor, Kenyon College Department of History</li>
-            </ul>
+            <div class="row">
+                <div class="col">
+                    <ul>
+                        <li>James Freed, Ph.D., Professor, Ohio Wesleyan University Department of Zoology</li>
+                        <li>Judith Freed, M.Ed., Delaware City Schools</li>
+                    </ul>
+                </div>
+                <div class="col">
+                    <ul>
+                        <li>David Hejmanowski, J.D., Judge, Delaware County Court of Common Pleas Probate/Juvenile Division</li>
+                    </ul>
+                    <ul>
+                        <li>Glenn McNair, Ph.D., Professor, Kenyon College Department of History</li>
+                    </ul>
+                </div>
+            </div>
 
             <h2 id="disclaimer">Disclaimer</h2>
             <p>
