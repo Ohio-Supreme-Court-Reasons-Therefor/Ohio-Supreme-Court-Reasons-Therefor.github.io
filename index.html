@@ -208,8 +208,8 @@
             <h1 style="padding-top: 15px">Ohio Supreme Court "Reasons Therefor" Research</h1>
 
             <p>
-                In 1912, Ohio voters mandated that their supreme court report the reasons for its decisions. This page regards research on
-                the origins and observance of the mandate. The mandate presently appears in the Ohio Constitution's Article IV,
+                In 1912, Ohio voters required their Supreme court to report the reasons for its decisions. This page regards research on the
+                origins and observance of the mandate. The mandate is presently in the Ohio Constitution's Article IV,
                 <a href="https://www.legislature.ohio.gov/laws/ohio-constitution/section?const=4.02">Section 2</a>(C), as follows:
             </p>
 
@@ -253,7 +253,7 @@
                 <div class="col-7">
                     <h2 id="summaryhistory">Summary History</h2>
                     <p>
-                        After a constitutional convention in 1912, Ohioans
+                        Ohioans held a constitutional convention in 1912. Afterwards, Ohioans
                         <a href="https://ballotpedia.org/Ohio_Judicial_System_Changes,_Amendment_19_(September_1912)">voted</a> to add a
                         mandate to their constitution for their Supreme Court to report decisions "with the reasons therefor".
                     </p>
@@ -286,8 +286,8 @@
                         Despite the mandate, Ohio's Supreme Court has frequently reported decisions without reporting "reasons therefor".
                         For example, when a candidate in the March 2020 primary election
                         <a href="https://www.google.com/search?q=Speweik+march+2020+primary+election">asked</a> the Court to mandate the
-                        election be held as scheduled despite COVID-19, the Court's reported decision text was merely this: "In Mandamus.
-                        Writ denied." <i>State ex rel. Speweik v. Wood Cty. Bd. of Elections</i>, No.
+                        election be held as scheduled despite the COVID-19 pandemic, the Court's reported decision text was merely this: "In
+                        Mandamus. Writ denied." <i>State ex rel. Speweik v. Wood Cty. Bd. of Elections</i>, No.
                         <a href="https://supremecourt.ohio.gov/Clerk/ecms/#/caseinfo/2020/0382">2020-0382</a>,
                         <a href="https://supremecourt.ohio.gov/rod/docs/pdf/0/2020/2020-ohio-997.pdf">2020-Ohio-997</a>. When a member of
                         Ohio's House of Representatives then
@@ -316,10 +316,14 @@
                                 established the primacy of the "law of the land". That "law" was not statutory law. Parliament and the first
                                 statutory law, the
                                 <a href="https://www.google.com/search?q=statute+of+merton"><i>Statute of Merton</i></a> of 1235, were still
-                                decades away. Instead, that "law" was mostly and increasingly became rules and procedures used by judges in
-                                the country-wide royal tribunals that Henry II had started around 1166 - 1176. The Magna Carta implicitly
-                                established the preeminence of those judges' work. Those judges and scholars' work to establish common rules
-                                and procedures led to the dissemination of reasons for decisions in "Year Books" and other reports.
+                                decades away. Instead, that "law" was mostly and increasingly became the rules and procedures that judges
+                                used in the royal tribunals that
+                                <a href="https://www.google.com/search?q=henry+ii+of+england">Henry II</a>had started around 1166 - 1176.
+                                The Magna Carta implicitly established the preeminence of those judges' work. Those judges and scholars'
+                                work to establish common rules and procedures led to the dissemination of reasons for decisions in "<a
+                                    href="https://www.google.com/search?q=england+court+year+books"
+                                    >Year Books</a
+                                >" and other reports.
                             </p>
                         </div>
                     </div>
@@ -405,7 +409,7 @@
                     <h2 id="relatednews">Related News</h2>
                     <ul class="related-news-rss-items"></ul>
                     <script>
-                        // To avoid cors problem, use Google Apps Script to get Google News RSS feed.
+                        // To avoid cors problem, use a Google Apps Script to get Google News RSS feed.
                         // Edit at  https://script.google.com/home/projects/1_VmEx8H0ZJ4q29f3fCNbL19W6phLE0uc2DPS-Q2g8rizMeLIdzCCxNrt/edit
                         fetch("https://script.google.com/macros/s/AKfycbyTmjHuIalupAyAL-v5B4d6OcQRuJHOjE5X9ZUGLH9ZScCX_eo5oWY6ig/exec", {
                             headers: { origin: window.location.protocol + "//" + window.location.host },
@@ -418,6 +422,11 @@
                             .then((data) => {
                                 const items = data.querySelectorAll("item");
                                 let html = ``;
+                                if (items.length == 0) {
+                                    html =
+                                        '<a href="https://news.google.com/search?q=ohio+constitution+supreme+court+%22together+with+the+reasons+therefor%22&hl=en-US&gl=US&ceid=US:en">' +
+                                        "<i>No recent news.</i></a>";
+                                }
                                 items.forEach((el) => {
                                     let pubDate = luxon.DateTime.fromJSDate(new Date(el.querySelector("pubDate").innerHTML)).toLocaleString(
                                         luxon.DATE_FULL
@@ -457,9 +466,9 @@
             <p>
                 <em
                     ><span style="color: #e24c00"
-                        ><strong>Warning: Ads!</strong> The reference results below are via an ad-supported Google
+                        ><strong>Warning: Ads!</strong> The search results below are via an ad-supported Google
                         <a href="https://cse.google.com" style="color: inherit">Programmable Search Engine</a>. This website has no control
-                        over what ads may be displayed within the following results.</span
+                        over any ads that may be displayed within the results.</span
                     ></em
                 >
             </p>
