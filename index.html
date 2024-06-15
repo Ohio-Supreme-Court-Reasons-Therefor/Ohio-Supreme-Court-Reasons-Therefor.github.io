@@ -499,43 +499,49 @@
                     <script>
                         // To avoid cors problem, use a Google Apps Script to get Google News RSS feed.
                         // Edit at  https://script.google.com/home/projects/1_VmEx8H0ZJ4q29f3fCNbL19W6phLE0uc2DPS-Q2g8rizMeLIdzCCxNrt/edit
-                        fetch(
-                            "https://script.google.com/macros/s/AKfycbx3b62UXRrTPWQWv40M1qERYm24N3LHYbHYpWUwKxgAgzmbnmdwrYzUpoDpIp8D_sgWkg/exec",
-                            {
-                                headers: {
-                                    origin: window.location.protocol + "//" + window.location.host,
-                                    "Content-Type": "text/plain;charset=utf-8",
-                                },
-                            }
-                        )
-                            .then((response) => response.text())
-                            .then((str) => {
-                                console.log("Google Apps Script (proxy for Google News RSS feed) response:", { str });
-                                return new window.DOMParser().parseFromString(str, "text/xml");
-                            })
-                            .then((data) => {
-                                const items = data.querySelectorAll("item");
-                                let html = ``;
-                                if (items.length == 0) {
-                                    html =
-                                        '<a href="https://news.google.com/search?q=ohio+constitution+supreme+court+%22together+with+the+reasons+therefor%22&hl=en-US&gl=US&ceid=US:en">' +
-                                        "<i>No recent news.</i></a>";
+                        let html = ``;
+                        try {
+                            fetch(
+                                "https://script.google.com/macros/s/AKfycbx3b62UXRrTPWQWv40M1qERYm24N3LHYbHYpWUwKxgAgzmbnmdwrYzUpoDpIp8D_sgWkg/exec",
+                                {
+                                    headers: {
+                                        origin: window.location.protocol + "//" + window.location.host,
+                                        "Content-Type": "text/plain;charset=utf-8",
+                                    },
                                 }
-                                items.forEach((el) => {
-                                    let pubDate = luxon.DateTime.fromJSDate(new Date(el.querySelector("pubDate").innerHTML)).toLocaleString(
-                                        luxon.DATE_FULL
-                                    );
-                                    html += `
+                            )
+                                .then((response) => response.text())
+                                .then((str) => {
+                                    console.log("Google Apps Script (proxy for Google News RSS feed) response:", { str });
+                                    return new window.DOMParser().parseFromString(str, "text/xml");
+                                })
+                                .then((data) => {
+                                    const items = data.querySelectorAll("item");
+                                    if (items.length == 0) {
+                                        html =
+                                            '<a href="https://news.google.com/search?q=ohio+constitution+supreme+court+%22together+with+the+reasons+therefor%22&hl=en-US&gl=US&ceid=US:en">' +
+                                            "<i>No recent news.</i></a>";
+                                    }
+                                    items.forEach((el) => {
+                                        let pubDate = luxon.DateTime.fromJSDate(
+                                            new Date(el.querySelector("pubDate").innerHTML)
+                                        ).toLocaleString(luxon.DATE_FULL);
+                                        html += `
                                         <li>
                                                 <a href="${el.querySelector("link").innerHTML}"><i>${
-                                        el.querySelector("title").innerHTML
-                                    }</i></a>
+                                            el.querySelector("title").innerHTML
+                                        }</i></a>
                                                 (${pubDate})
                                         </li>
                                     `;
+                                    });
                                 });
-                                document.querySelector("ul.related-news-rss-items").insertAdjacentHTML("beforeend", html);
-                            });
+                        } catch (e) {
+                            html =
+                                '<i>Error <a href="https://news.google.com/search?q=ohio+constitution+supreme+court+%22together+with+the+reasons+therefor%22&hl=en-US&gl=US&ceid=US:en">' +
+                                "news feed</a> for display. (See console for details.)</i>";
+                        }
+                        document.querySelector("ul.related-news-rss-items").insertAdjacentHTML("beforeend", html);
                     </script>
                 </div>
                 <div class="col-sm-5">
