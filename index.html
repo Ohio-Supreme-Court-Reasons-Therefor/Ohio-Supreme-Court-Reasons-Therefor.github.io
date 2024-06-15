@@ -168,7 +168,7 @@
         <!-- Luxon Javascript library for date work -->
         <script src="https://cdn.jsdelivr.net/npm/luxon@1.25.0/build/global/luxon.min.js"></script>
 
-        <title>Ohio Supreme Court "Reasons Therefor" Research</title>
+        <title>Ohio Supreme Court "Reasons Therefor" Project</title>
     </head>
     <body onload="onBodyLoad()" onresize="onBodyResize()">
         <!-- background color fcf5eb is a tint of the antique white used in the boxes; see https://www.color-hex.com/color/faebd7 -->
@@ -206,12 +206,11 @@
         </nav>
 
         <main class="container">
-            <h1 style="padding-top: 15px">Ohio Supreme Court "Reasons Therefor" Research</h1>
+            <h1 style="padding-top: 15px">Ohio Supreme Court "Reasons Therefor" Project</h1>
 
             <p>
-                In 1912, Ohio voters required their Supreme court to report the reasons for its decisions. This page regards research on the
-                origins and observance of that mandate, which is in the Ohio Constitution's Article IV,
-                <a href="https://www.legislature.ohio.gov/laws/ohio-constitution/section?const=4.02">Section 2</a>(C):
+                This project is dedicated to researching the origins and observance of the mandate that Ohio voters gave to their state
+                Supreme Court in 1912:
             </p>
 
             <div class="row">
@@ -249,6 +248,11 @@
             </div>
 
             <p>
+                That mandate is in the Ohio Constitution's Article IV,
+                <a href="https://codes.ohio.gov/ohio-constitution/section-4.2">Section 2</a>(C).
+            </p>
+
+            <p>
                 In recent years, the mandate has been contentious. A related case even
                 <a href="https://www.supremecourt.gov/search.aspx?filename=/docket/docketfiles/html/public/20-954.html">reached</a>
                 the U.S. Supreme Court in 2021.
@@ -260,7 +264,7 @@
                     <p>
                         After a constitutional convention in 1912, Ohio voters
                         <a href="https://ballotpedia.org/Ohio_Judicial_System_Changes,_Amendment_19_(September_1912)">approved</a> a mandate
-                        for their supreme court to report decisions "with the reasons therefor".
+                        for their Supreme Court to report decisions "with the reasons therefor".
                     </p>
                     <p>
                         In 1925, the mandate appeared for the first time in a report.
@@ -331,8 +335,8 @@
                                 that existed. Reasons for decisions began to be gathered and reported in "<a
                                     href="https://www.google.com/search?q=england+court+year+books"
                                     >Year Books</a
-                                >", starting around 1268. Over time, much of the Magna Carta's "law of the land" became synonymous with
-                                reported reasons for common decisions. What was descriptive became prescriptive.
+                                >", starting around 1268. Over time, the Magna Carta's "law of the land" became synonymous with reported
+                                reasons for common decisions. What was descriptive became prescriptive.
                             </p>
                         </div>
                     </div>
@@ -495,9 +499,15 @@
                     <script>
                         // To avoid cors problem, use a Google Apps Script to get Google News RSS feed.
                         // Edit at  https://script.google.com/home/projects/1_VmEx8H0ZJ4q29f3fCNbL19W6phLE0uc2DPS-Q2g8rizMeLIdzCCxNrt/edit
-                        fetch("https://script.google.com/macros/s/AKfycbzxXixyO7yqsbnYpk7u4-bEwTdsKFiCAOfwgDcpcgSDkoULBWSm84IRy0wjr6Q7MQsh4A/exec", {
-                            headers: { origin: window.location.protocol + "//" + window.location.host },
-                        })
+                        fetch(
+                            "https://script.google.com/macros/s/AKfycbzxXixyO7yqsbnYpk7u4-bEwTdsKFiCAOfwgDcpcgSDkoULBWSm84IRy0wjr6Q7MQsh4A/exec",
+                            {
+                                headers: {
+                                    origin: window.location.protocol + "//" + window.location.host,
+                                    "Content-Type": "text/plain;charset=utf-8",
+                                },
+                            }
+                        )
                             .then((response) => response.text())
                             .then((str) => {
                                 console.log("Google Apps Script (proxy for Google News RSS feed) response:", { str });
